@@ -8,7 +8,7 @@ import com.viking.api.User;
  * Created by lars@harbourfront.se
  */
 
-public class LoginPresenter {
+class LoginPresenter {
     private final LoginView mView;
     private final LoginModel mModel;
 

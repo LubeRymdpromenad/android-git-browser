@@ -9,15 +9,15 @@ import com.viking.storage.GitBrowserDatabase;
  * Created by lars@harbourfront.se
  */
 
-public class RepoDetailsModel {
+class RepoDetailsModel {
 
     private final GitBrowserDatabase mDataBase;
 
-    public RepoDetailsModel(@NonNull final GitBrowserDatabase database) {
+    RepoDetailsModel(@NonNull final GitBrowserDatabase database) {
         mDataBase = database;
     }
 
-    public Repo getRepo(final int id) {
+    Repo getRepo(final int id) {
         return mDataBase.repoDao().get(id);
     }
 }

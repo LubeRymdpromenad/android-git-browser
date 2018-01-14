@@ -36,6 +36,6 @@ public class UserRepository {
     }
 
     public void clearCredentials() {
-        mSharedPreferences.edit().clear();
+        mSharedPreferences.edit().clear().apply();
     }
 }

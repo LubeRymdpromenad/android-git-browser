@@ -29,6 +29,7 @@ public class RepoListAdapter extends RecyclerView.Adapter<RepoListAdapter.RepoLi
 
     @Override
     public RepoListViewHolder onCreateViewHolder(@Nullable ViewGroup viewGroup, final int i) {
+        assert viewGroup != null;
         final LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
         final ViewRepoListItemBinding binding
@@ -52,7 +53,7 @@ public class RepoListAdapter extends RecyclerView.Adapter<RepoListAdapter.RepoLi
     }
 
     public class RepoListViewHolder extends RecyclerView.ViewHolder {
-        public ViewRepoListItemBinding binding;
+        public final ViewRepoListItemBinding binding;
 
         public RepoListViewHolder(@NonNull final ViewRepoListItemBinding binding) {
             super(binding.getRoot());

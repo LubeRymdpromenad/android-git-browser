@@ -73,8 +73,8 @@ public class RepoDetailsFragment extends Fragment implements RepoDetailsView {
     }
 
     private void setupListeners() {
-        mBinding.tvSshUrl.setOnClickListener(view -> onClickCopy(view));
-        mBinding.tvCloneUrl.setOnClickListener(view -> onClickCopy(view));
+        mBinding.tvSshUrl.setOnClickListener(this::onClickCopy);
+        mBinding.tvCloneUrl.setOnClickListener(this::onClickCopy);
     }
 
     @Override
@@ -95,18 +95,20 @@ public class RepoDetailsFragment extends Fragment implements RepoDetailsView {
 
     @SuppressWarnings("deprecation")
     @TargetApi(11)
-    public void onClickCopy(View view) {   // User-defined onClick Listener
+    private void onClickCopy(View view) {   // User-defined onClick Listener
         TextView textView = (TextView) view;
 
         int sdk_Version = android.os.Build.VERSION.SDK_INT;
         if(sdk_Version < android.os.Build.VERSION_CODES.HONEYCOMB) {
             android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            assert clipboard != null;
             clipboard.setText(textView.getText().toString());   // Assuming that you are copying the text from a TextView
             Toast.makeText(getContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show();
         }
         else {
             android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
             android.content.ClipData clip = android.content.ClipData.newPlainText("", textView.getText().toString());
+            assert clipboard != null;
             clipboard.setPrimaryClip(clip);
             Toast.makeText(getContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show();
         }

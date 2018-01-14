@@ -54,6 +54,7 @@ public class LoginFragment extends Fragment implements LoginView {
             mPresenter.onLoginClicked(userName1, password1);
 
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            assert imm != null;
             imm.hideSoftInputFromWindow(mBinding.tvPassword.getWindowToken(), 0);
         });
 

@@ -9,24 +9,24 @@ import com.viking.storage.GitBrowserDatabase;
  * Created by lars@harbourfront.se
  */
 
-public class MainActivityModel {
+class MainActivityModel {
     private final UserRepository mUserRepository;
     private final GitBrowserDatabase mDatabase;
 
-    public MainActivityModel(@NonNull final UserRepository userRepository, @NonNull final GitBrowserDatabase database) {
+    MainActivityModel(@NonNull final UserRepository userRepository, @NonNull final GitBrowserDatabase database) {
         mUserRepository = userRepository;
         mDatabase = database;
     }
 
-    public boolean isLoggedIn() {
+    boolean isLoggedIn() {
         return mUserRepository.isLoggedIn();
     }
 
-    public void clearCredentials() {
+    void clearCredentials() {
         mUserRepository.clearCredentials();
     }
 
-    public void clearRepoList() {
+    void clearRepoList() {
         mDatabase.repoDao().nukeTable();
     }
 }

@@ -10,14 +10,14 @@ import com.viking.api.UserRepository;
  * Created by lars@harbourfront.se
  */
 
-public class LoginModel {
+class LoginModel {
     private final UserRepository mUserRepository;
 
-    public LoginModel(@NonNull final UserRepository userRepository) {
+    LoginModel(@NonNull final UserRepository userRepository) {
         mUserRepository = userRepository;
     }
 
-    public void fetchUser(@NonNull final String userName, @NonNull final String password, CallBack callBack) {
+    void fetchUser(@NonNull final String userName, @NonNull final String password, CallBack callBack) {
         GitHubService.getInstance().fetchUser(userName, password, new GitHubService.GitHubServiceCallback<User>() {
             @Override
             public void onSuccess(User user) {
@@ -31,7 +31,7 @@ public class LoginModel {
         });
     }
 
-    public void storeCredentials(@NonNull final String userName, @NonNull final String password) {
+    void storeCredentials(@NonNull final String userName, @NonNull final String password) {
         mUserRepository.storeCredentials(userName, password);
     }
 

@@ -3,7 +3,6 @@ package com.viking;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
     private static final String KEY_CURRENT_FRAGMENT = "key-current-fragment";
 
     private LoginFragment mLoginFragment;
-    private ViewDataBinding mBinding;
     private RepoListFragment mRepoListFragment;
     private RepoDetailsFragment mRepoDetailsFragment;
     private MainActivityPresenter mPresenter;
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         final SharedPreferences sharedPreferences = getApplicationContext()
                 .getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE);
@@ -83,11 +81,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         }
     }
 
-    public void addFragment(@NonNull final Fragment fragment) {
+    private void addFragment(@NonNull final Fragment fragment) {
         addFragment(fragment, true);
     }
 
-    public void addFragment(@NonNull final Fragment fragment, final boolean addToBackStack) {
+    private void addFragment(@NonNull final Fragment fragment, final boolean addToBackStack) {
         final FragmentManager fragmentManager = getSupportFragmentManager();
 
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -145,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         addFragment(mRepoDetailsFragment);
     }
 
-    public Fragment getCurrentFragment() {
+    private Fragment getCurrentFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         List<Fragment> fragments = fragmentManager.getFragments();
 

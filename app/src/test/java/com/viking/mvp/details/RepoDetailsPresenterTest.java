@@ -20,15 +20,15 @@ import static org.mockito.Mockito.when;
 public class RepoDetailsPresenterTest {
 
     @Mock
-    RepoDetailsView mView;
+    private RepoDetailsView mView;
 
     @Mock
-    RepoDetailsModel mModel;
+    private RepoDetailsModel mModel;
 
     private RepoDetailsPresenter mPresenter;
     private Repo mRepo;
-    private int invalidId = -1;
-    private int validId = 1;
+    private final int invalidId = -1;
+    private final int validId = 1;
 
     @Before
     public void setUp() throws Exception {

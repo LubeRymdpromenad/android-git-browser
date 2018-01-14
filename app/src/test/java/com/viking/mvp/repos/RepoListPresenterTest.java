@@ -23,14 +23,13 @@ import static org.mockito.Mockito.when;
 public class RepoListPresenterTest {
 
     @Mock
-    RepoListView mView;
+    private RepoListView mView;
 
     @Mock
-    RepoListModel mModel;
+    private RepoListModel mModel;
 
     private RepoListPresenter mPresenter;
-    private final int mValidRepoId = 0;
-    private List<Repo> mEmptyRepoList = Collections.emptyList();
+    private final List<Repo> mEmptyRepoList = Collections.emptyList();
 
     @Before
     public void setUp() throws Exception {
@@ -91,6 +90,7 @@ public class RepoListPresenterTest {
 
     @Test
     public void passOpenDetailView() {
+        final int mValidRepoId = 0;
         mPresenter.openRepoDetailView(mValidRepoId);
         Mockito.verify(mView).openRepoDetailView(mValidRepoId);
     }

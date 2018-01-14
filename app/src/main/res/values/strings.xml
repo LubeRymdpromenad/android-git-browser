@@ -11,4 +11,10 @@
     <string name="really_bad_error_message">Oops! Something went wrong. Please restart the app</string>
     <string name="copied_to_clipboard">Copied to Clipboard!</string>
     <string name="not_available">N/A</string>
+    <string name="language">Language:</string>
+    <string name="no_of_watchers">No of watchers:</string>
+    <string name="ssh_url">ssh URL:</string>
+    <string name="https_url">https URL:</string>
+    <string name="logout">Logout</string>
+    <string name="app_logo">App logo</string>
 </resources>

@@ -13,16 +13,16 @@ import java.util.List;
  * Created by lars@harbourfront.se
  */
 
-public class RepoListModel {
+class RepoListModel {
     private final UserRepository mUserRepository;
     private final GitBrowserDatabase mDatabase;
 
-    public RepoListModel(@NonNull final UserRepository userRepository, @NonNull final GitBrowserDatabase database) {
+    RepoListModel(@NonNull final UserRepository userRepository, @NonNull final GitBrowserDatabase database) {
         mUserRepository = userRepository;
         mDatabase = database;
     }
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return mDatabase.repoDao().getAll().isEmpty();
     }
 
@@ -30,7 +30,7 @@ public class RepoListModel {
         return mDatabase.repoDao().getAll();
     }
 
-    public void fetchRepos(@NonNull final CallBack callBack) {
+    void fetchRepos(@NonNull final CallBack callBack) {
         final String userName = mUserRepository.getUserName();
         final String password = mUserRepository.getPassword();
         if (userName.isEmpty() || password.isEmpty()) {
@@ -50,7 +50,7 @@ public class RepoListModel {
         });
     }
 
-    public void storeRepoList(@NonNull final List<Repo> repoList) {
+    void storeRepoList(@NonNull final List<Repo> repoList) {
         mDatabase.repoDao().insertAll(repoList);
     }
 

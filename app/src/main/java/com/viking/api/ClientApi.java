@@ -12,7 +12,7 @@ import retrofit2.http.Path;
  * Created by lars@harbourfront.se
  */
 
-public interface ClientApi {
+interface ClientApi {
     String BASE_URL = "https://api.github.com";
 
     //TODO move headers to Interceptor

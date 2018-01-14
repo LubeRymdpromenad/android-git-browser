@@ -18,7 +18,7 @@ public class GitHubService {
     private static final int RESPONSE_CODE_OK = 200;
     private static GitHubService INSTANCE;
 
-    private ClientApi api;
+    private final ClientApi api;
 
     public static GitHubService getInstance() {
         if(INSTANCE == null) {
@@ -46,7 +46,7 @@ public class GitHubService {
 
         call.enqueue(new Callback<List<Repo>>() {
             @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+            public void onResponse(@NonNull Call<List<Repo>> call, @NonNull Response<List<Repo>> response) {
                 int statusCode = response.code();
                 if(statusCode != RESPONSE_CODE_OK) {
                     callback.onFailed();
@@ -58,7 +58,7 @@ public class GitHubService {
             }
 
             @Override
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Repo>> call, @NonNull Throwable t) {
                 callback.onFailed();
             }
         });
@@ -74,7 +74,7 @@ public class GitHubService {
 
         call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 int statusCode = response.code();
                 if(statusCode != RESPONSE_CODE_OK) {
                     callback.onFailed();
@@ -86,7 +86,7 @@ public class GitHubService {
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 callback.onFailed();
             }
         });

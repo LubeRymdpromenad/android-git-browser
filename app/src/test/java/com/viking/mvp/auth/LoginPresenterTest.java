@@ -17,15 +17,15 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class LoginPresenterTest {
 
     @Mock
-    LoginView mView;
+    private LoginView mView;
 
     @Mock
-    LoginModel mModel;
+    private LoginModel mModel;
 
     private LoginPresenter mPresenter;
-    private String userName = "Berra";
-    private String password = "abc123";
-    private User user = new User();
+    private final String userName = "Berra";
+    private final String password = "abc123";
+    private final User user = new User();
 
     @Before
     public void setUp() throws Exception {
