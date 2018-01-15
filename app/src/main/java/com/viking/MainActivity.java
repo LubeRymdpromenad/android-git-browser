@@ -120,8 +120,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
     }
 
     public void openRestoreFragment() {
-        boolean addToBackStack = !(mCurrentFragment instanceof LoginFragment);
-        addFragment(mCurrentFragment, addToBackStack);
+        addFragment(mCurrentFragment, false);
     }
 
     public void openLoginView() {
