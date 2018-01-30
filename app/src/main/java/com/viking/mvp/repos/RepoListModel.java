@@ -9,6 +9,9 @@ import com.viking.storage.GitBrowserDatabase;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
+
 /**
  * Created by lars@harbourfront.se
  */
@@ -22,32 +25,20 @@ class RepoListModel {
         mDatabase = database;
     }
 
+    /* TODO Check database first */
     boolean isEmpty() {
-        return mDatabase.repoDao().getAll().isEmpty();
+        return true;
+//        return mDatabase.repoDao().getAll().isEmpty();
     }
 
-    public List<Repo> getRepos() {
+    public Single<List<Repo>> getRepos() {
         return mDatabase.repoDao().getAll();
     }
 
-    void fetchRepos(@NonNull final CallBack callBack) {
+    Single<List<Repo>> fetchRepos() {
         final String userName = mUserRepository.getUserName();
         final String password = mUserRepository.getPassword();
-        if (userName.isEmpty() || password.isEmpty()) {
-            callBack.onFailed();
-        }
-
-        GitHubService.getInstance().fetchRepos(userName, password, new GitHubService.GitHubServiceCallback<List<Repo>>() {
-            @Override
-            public void onSuccess(List<Repo> repoList) {
-                callBack.onSuccess(repoList);
-            }
-
-            @Override
-            public void onFailed() {
-                callBack.onFailed();
-            }
-        });
+        return GitHubService.getInstance().fetchRepos(userName, password);
     }
 
     void storeRepoList(@NonNull final List<Repo> repoList) {

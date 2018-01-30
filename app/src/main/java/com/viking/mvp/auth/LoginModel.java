@@ -6,6 +6,8 @@ import com.viking.api.GitHubService;
 import com.viking.api.User;
 import com.viking.api.UserRepository;
 
+import io.reactivex.Single;
+
 /**
  * Created by lars@harbourfront.se
  */
@@ -17,18 +19,8 @@ class LoginModel {
         mUserRepository = userRepository;
     }
 
-    void fetchUser(@NonNull final String userName, @NonNull final String password, CallBack callBack) {
-        GitHubService.getInstance().fetchUser(userName, password, new GitHubService.GitHubServiceCallback<User>() {
-            @Override
-            public void onSuccess(User user) {
-                callBack.onSuccess(user);
-            }
-
-            @Override
-            public void onFailed() {
-                callBack.onFailed();
-            }
-        });
+    Single<User> fetchUser(@NonNull String userName, @NonNull final String password) {
+        return GitHubService.getInstance().fetchUser(userName, password);
     }
 
     void storeCredentials(@NonNull final String userName, @NonNull final String password) {

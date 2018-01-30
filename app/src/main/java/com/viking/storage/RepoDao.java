@@ -13,16 +13,19 @@ import com.viking.api.Repo;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 @Dao
 public interface RepoDao {
+
     @Query("SELECT * FROM repo")
-    List<Repo> getAll();
+    Single<List<Repo>> getAll();
+
+    @Query("SELECT * FROM repo where id LIKE :id")
+    Single<Repo> getRepo(int id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Repo> repos);
-
-    @Query("SELECT * FROM repo where id LIKE :id")
-    Repo get(int id);
 
     @Query("DELETE FROM repo")
     void nukeTable();

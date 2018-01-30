@@ -92,6 +92,7 @@ public class RepoListFragment extends Fragment implements RepoListView {
 
     @Override
     public void displayError() {
+        //TODO Add a retry or go back in view
         Snackbar.make(getActivity().findViewById(android.R.id.content), R.string.download_failed, Snackbar.LENGTH_LONG).show();
     }
 
