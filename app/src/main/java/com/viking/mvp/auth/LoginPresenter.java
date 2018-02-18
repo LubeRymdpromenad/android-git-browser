@@ -27,7 +27,6 @@ class LoginPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new SingleObserver<User>() {
-
                     @Override
                     public void onSubscribe(Disposable d) {
 

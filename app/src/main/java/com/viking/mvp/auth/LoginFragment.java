@@ -35,6 +35,7 @@ public class LoginFragment extends Fragment implements LoginView {
 
         final UserRepository userRepository = new UserRepository(sharedPreferences);
         final LoginModel loginModel = new LoginModel(userRepository);
+
         mPresenter = new LoginPresenter(this, loginModel);
     }
 
