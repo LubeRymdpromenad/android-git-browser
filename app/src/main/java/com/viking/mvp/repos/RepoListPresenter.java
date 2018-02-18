@@ -2,12 +2,8 @@ package com.viking.mvp.repos;
 
 import android.support.annotation.NonNull;
 
-import com.viking.api.Repo;
 import com.viking.mvp.Presenter;
 
-import java.util.List;
-
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -29,33 +25,20 @@ public class RepoListPresenter implements Presenter {
 
     @Override
     public void onResume() {
+        //TODO check if we shuold check db first
 //        if (mModel.isEmpty()) {
         mModel.fetchRepos()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new SingleObserver<List<Repo>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+                .subscribe(repoList -> {
 
-                    }
-
-                    @Override
-                    public void onSuccess(List<Repo> repoList) {
+                    if (repoList.isEmpty()) {
+                        mView.displayEmptyMessage();
+                    } else {
                         mModel.storeRepoList(repoList);
-
-                        if (repoList.isEmpty()) {
-                            mView.displayEmptyMessage();
-                        } else {
-                            mView.updateRepoList(repoList);
-                        }
+                        mView.updateRepoList(repoList);
                     }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mView.displayError();
-                    }
-                });
-//    }
+                }, throwable -> mView.displayError());
     }
 
     @Override
