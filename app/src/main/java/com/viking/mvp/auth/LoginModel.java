@@ -26,9 +26,4 @@ class LoginModel {
     void storeCredentials(@NonNull final String userName, @NonNull final String password) {
         mUserRepository.storeCredentials(userName, password);
     }
-
-    interface CallBack {
-        void onSuccess(User user);
-        void onFailed();
-    }
 }

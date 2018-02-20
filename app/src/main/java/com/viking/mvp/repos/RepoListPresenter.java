@@ -25,9 +25,9 @@ public class RepoListPresenter implements Presenter {
 
     @Override
     public void onResume() {
-        //TODO check if we shuold check db first
+        //TODO check if we should check db first
 //        if (mModel.isEmpty()) {
-        mModel.fetchRepos()
+        mRepoDisposable = mModel.fetchRepos()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(repoList -> {

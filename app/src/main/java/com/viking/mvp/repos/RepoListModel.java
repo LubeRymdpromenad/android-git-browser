@@ -44,9 +44,4 @@ class RepoListModel {
     void storeRepoList(@NonNull final List<Repo> repoList) {
         mDatabase.repoDao().insertAll(repoList);
     }
-
-    interface CallBack {
-        void onSuccess(List<Repo> repoList);
-        void onFailed();
-    }
 }
